@@ -116,12 +116,11 @@ function doDecrypt(encryptData, privateKey, cipherMode = 1, {
 function doSignature(msg, privateKey, {
   pointPool, der, hash, publicKey, userId
 } = {}) {
-  // 修改源码
-  // let hashHex = typeof msg === 'string' ? _.utf8ToHex(msg) : _.arrayToHex(msg)
-  let hashHex = msg
+  let hashHex = typeof msg === 'string' ? _.utf8ToHex(msg) : _.arrayToHex(msg)
   if (hash) {
     // sm3杂凑
     publicKey = publicKey || getPublicKeyFromPrivateKey(privateKey)
+    publicKey = publicKey.substring(2)
     hashHex = getHash(hashHex, publicKey, userId)
   }
 
