@@ -102,7 +102,9 @@ function doDecrypt(encryptData, privateKey, cipherMode = 1, {
   const checkC3 = _.arrayToHex(sm3([].concat(x2, msg, y2)))
 
   if (checkC3 === c3.toLowerCase()) {
-    return output === 'array' ? msg : _.arrayToUtf8(msg)
+    // 修改源码
+    // return output === 'array' ? msg : _.arrayToUtf8(msg)
+    return output === 'array' ? msg : _.arrayToHex(msg)
   } else {
     return output === 'array' ? [] : ''
   }
